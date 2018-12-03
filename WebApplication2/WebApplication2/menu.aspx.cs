@@ -16,17 +16,20 @@ namespace WebApplication2
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            object cartObj = Session["Cart"];
+            object totalObj = Session["Total"];
+
             if (!this.IsPostBack)
             {
-                Page_Load_Code();
+                Page_Load_Code(cartObj, totalObj);
                
             }
 
         }
 
-        protected void Page_Load_Code()
+        protected void Page_Load_Code(object cartObj, object totalObj )
         {
-            if (Session["Cart"] == null && Session["Total"] == null)
+            if (cartObj == null && totalObj == null)
             {
                 ShoppingCart cart = new ShoppingCart();
                 Repeater1.DataSource = cart.getItems();
@@ -36,11 +39,11 @@ namespace WebApplication2
             }
             else
             {
-                ShoppingCart cart = Session["Cart"] as ShoppingCart;
+                ShoppingCart cart = cartObj as ShoppingCart;
                 Repeater1.DataSource = cart.getItems();
                 Repeater1.DataBind();
                 ViewState["cart"] = cart;
-                Label2.Text = Session["Total"].ToString();
+                Label2.Text = totalObj.ToString();
 
             }
         }
@@ -74,11 +77,20 @@ namespace WebApplication2
             ViewState["cart"] = cart;
         }
 
-            protected void Remove_Item(object sender, CommandEventArgs e)
-            {
+        protected void Remove_Item(object sender, CommandEventArgs e)
+        {
 
-            var myString = e.CommandArgument.ToString();
+        var myString = e.CommandArgument.ToString();
 
+
+            Remove_Item_Code(myString);
+            
+           
+   
+        }
+
+        protected void Remove_Item_Code(string myString)
+        {
             var myID = int.Parse(myString[1].ToString());
 
             ShoppingCart cart = ViewState["cart"] as ShoppingCart;
@@ -89,7 +101,7 @@ namespace WebApplication2
             Repeater1.DataBind();
 
             string[] cost = myString.Split('$');
-            
+
             decimal Total_cost = decimal.Parse(Label2.Text);
             decimal num_cost = decimal.Parse(cost[1].Substring(0, 4));
             if (test_case)
@@ -103,20 +115,20 @@ namespace WebApplication2
 
             }
             ViewState["cart"] = cart;
-           
-   
-        }
-
-        protected void Remove_Item_Code()
-        {
-
         }
 
         protected void Customize_Item(object sender, CommandEventArgs e)
         {
-            ShoppingCart cart = ViewState["cart"] as ShoppingCart;
 
             var myString = e.CommandArgument.ToString();
+
+            Customize_Item_Code(myString);
+
+        }
+
+        protected void Customize_Item_Code(string myString)
+        {
+            ShoppingCart cart = ViewState["cart"] as ShoppingCart;
 
             var myID = int.Parse(myString[1].ToString());
 
@@ -126,11 +138,11 @@ namespace WebApplication2
 
             foreach (ListItem item in CheckBoxList1.Items)
             {
-                if(item.Selected && !options[myID].Contains(item.Value))
+                if (item.Selected && !options[myID].Contains(item.Value))
                 {
                     CheckBoxList1.Items.FindByText(item.Value).Selected = false;
                 }
-                else if(!item.Selected && options[myID].Contains(item.Value))
+                else if (!item.Selected && options[myID].Contains(item.Value))
                 {
                     CheckBoxList1.Items.FindByText(item.Value).Selected = true;
                 }
@@ -138,11 +150,14 @@ namespace WebApplication2
 
             PopUp.Show();
 
-            
-
         }
 
         protected void CheckedAction(object sender, CommandEventArgs e)
+        {
+            CheckedActionCode();
+        }
+
+        protected void CheckedActionCode()
         {
             ShoppingCart cart = ViewState["cart"] as ShoppingCart;
 
@@ -154,12 +169,13 @@ namespace WebApplication2
             {
                 if (item.Selected)
                 {
-                    
+
                     optionsSelected = optionsSelected + item.Text + ",";
                 }
             }
             cart.AlterOptions(myID, optionsSelected);
             ViewState["cart"] = cart;
+
         }
 
         protected void HideOptions(object sender, CommandEventArgs e)
@@ -167,7 +183,13 @@ namespace WebApplication2
             PopUp.Hide();
         }
 
+
         protected void GoToCart(object sender, CommandEventArgs e) {
+            GoToCartCode();
+        }
+
+        protected void GoToCartCode()
+        {
             ShoppingCart cart = ViewState["cart"] as ShoppingCart;
 
             UserDummy userDummy = new UserDummy();
@@ -177,8 +199,6 @@ namespace WebApplication2
 
             Server.Transfer("Transaction.aspx");
         }
-
-        
 
     }
 }

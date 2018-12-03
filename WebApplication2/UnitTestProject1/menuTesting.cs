@@ -14,7 +14,12 @@ namespace UnitTestProject1
 
             menuTesting item = new menuTesting();
 
-            
+            object cartTest = null;
+            object totalTest = null;
+
+            item.Page_Load_Code(cartTest, totalTest);
+
+            Assert.IsNull(ViewState["cart"]);
 
         }
     }
