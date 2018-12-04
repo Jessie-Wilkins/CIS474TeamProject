@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using System;//Library for using system related classes and methods
 
 namespace WebApplication2
 {
+    /*
+     Class used to give message that transaction is complete.
+     Can go back to menu or log out.
+     */
     public partial class TransactionComplete : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)

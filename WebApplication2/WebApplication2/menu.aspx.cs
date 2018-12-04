@@ -1,13 +1,5 @@
-﻿using AjaxControlToolkit.HtmlEditor;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Net.Http;
-using System.Collections.Specialized;
+﻿using System; //Adds system classes to the code
+using System.Web.UI.WebControls; //Adds UI controls for menu
 
 namespace WebApplication2
 {
