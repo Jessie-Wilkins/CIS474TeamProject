@@ -16,7 +16,11 @@ namespace WebApplication2
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+           
             object cartObj = Session["Cart"];
+            
+                
             object totalObj = Session["Total"];
 
             if (!this.IsPostBack)
@@ -53,16 +57,7 @@ namespace WebApplication2
 
             var myString = e.CommandArgument.ToString();
             Add_Item_Code(myString);
-            
-
-        }
-
-        protected void Add_Item_Code(string myString)
-        {
             ShoppingCart cart = ViewState["cart"] as ShoppingCart;
-
-            cart.AddToCart(myString);
-
             Repeater1.DataSource = cart.getItems();
             Repeater1.DataBind();
 
@@ -71,31 +66,28 @@ namespace WebApplication2
             double Total_cost = double.Parse(Label2.Text);
 
             Total_cost = double.Parse(cost[1]) + Total_cost;
+        }
 
-            Label2.Text = Total_cost.ToString();
+        protected string Add_Item_Code(string myString)
+        {
+           ShoppingCart cart = ViewState["cart"] as ShoppingCart;
+
+           cart.AddToCart(myString);
 
             ViewState["cart"] = cart;
+
+            return myString;
         }
 
         protected void Remove_Item(object sender, CommandEventArgs e)
         {
 
-        var myString = e.CommandArgument.ToString();
+            var myString = e.CommandArgument.ToString();
 
 
-            Remove_Item_Code(myString);
-            
-           
-   
-        }
-
-        protected void Remove_Item_Code(string myString)
-        {
-            var myID = int.Parse(myString[1].ToString());
+            bool test_case = Remove_Item_Code(myString);
 
             ShoppingCart cart = ViewState["cart"] as ShoppingCart;
-
-            bool test_case = cart.RemoveFromCart(myID);
 
             Repeater1.DataSource = cart.getItems();
             Repeater1.DataBind();
@@ -106,15 +98,30 @@ namespace WebApplication2
             decimal num_cost = decimal.Parse(cost[1].Substring(0, 4));
             if (test_case)
             {
-                //string specifier = "R";
-                //var culture = CultureInfo.CreateSpecificCulture("en-US");
+
 
                 Total_cost = Total_cost - num_cost;
 
                 Label2.Text = Total_cost.ToString();
 
             }
+
+
+
+        }
+
+        protected bool Remove_Item_Code(string myString)
+        {
+            var myID = int.Parse(myString[1].ToString());
+
+            ShoppingCart cart = ViewState["cart"] as ShoppingCart;
+
+            bool test_case = cart.RemoveFromCart(myID);
+
+            
             ViewState["cart"] = cart;
+
+            return test_case;
         }
 
         protected void Customize_Item(object sender, CommandEventArgs e)
@@ -122,19 +129,13 @@ namespace WebApplication2
 
             var myString = e.CommandArgument.ToString();
 
-            Customize_Item_Code(myString);
+            int myID = Customize_Item_Code(myString);
 
-        }
-
-        protected void Customize_Item_Code(string myString)
-        {
             ShoppingCart cart = ViewState["cart"] as ShoppingCart;
 
-            var myID = int.Parse(myString[1].ToString());
-
-            ViewState["id_temp"] = myID;
-
             var options = cart.getOptions();
+
+            
 
             foreach (ListItem item in CheckBoxList1.Items)
             {
@@ -152,20 +153,33 @@ namespace WebApplication2
 
         }
 
-        protected void CheckedAction(object sender, CommandEventArgs e)
+        protected int Customize_Item_Code(string myString)
         {
-            CheckedActionCode();
+            ShoppingCart cart = ViewState["cart"] as ShoppingCart;
+
+            var myID = int.Parse(myString[1].ToString());
+
+            ViewState["id_temp"] = myID;
+
+            return myID;
+
         }
 
-        protected void CheckedActionCode()
+        protected void CheckedAction(object sender, CommandEventArgs e)
+        {
+            ListItemCollection checkItems = CheckBoxList1.Items;
+            CheckedActionCode(checkItems);
+        }
+
+        protected void CheckedActionCode(ListItemCollection checkItems)
         {
             ShoppingCart cart = ViewState["cart"] as ShoppingCart;
 
             int myID = int.Parse(ViewState["id_temp"].ToString());
 
-            string optionsSelected = " ";
+            string optionsSelected = "";
 
-            foreach (ListItem item in CheckBoxList1.Items)
+            foreach (ListItem item in checkItems)
             {
                 if (item.Selected)
                 {
@@ -191,8 +205,6 @@ namespace WebApplication2
         protected void GoToCartCode()
         {
             ShoppingCart cart = ViewState["cart"] as ShoppingCart;
-
-            UserDummy userDummy = new UserDummy();
 
             Session["cart"] = cart;
             Session["Total"] = Label2.Text;

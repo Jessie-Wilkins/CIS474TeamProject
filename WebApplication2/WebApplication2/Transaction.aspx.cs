@@ -11,7 +11,7 @@ using System.Web.Script.Serialization;
 
 namespace WebApplication2
 {
-    public partial class WebForm2 : System.Web.UI.Page
+    public partial class Transaction : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -40,10 +40,19 @@ namespace WebApplication2
             Dictionary<int, string> select_options = cart.getOptions();
             var items_string = string.Join(";", select_items);
             var options_string = string.Join(";", select_options);
+            var totalPrice = decimal.Parse(Label1.Text);
 
-            var js = new JavaScriptSerializer();
+            CompleteTransaction_Code(items_string, options_string, totalPrice, userID);
 
-            String query = String.Format("INSERT INTO [team_project475].[orders](TotalPrice, OptionsSelected, ETA, CustomerID, DateOfPurchase, ItemsSelected) VALUES({0},'{1}', '{2}', {3}, '{4}', '{5}')", decimal.Parse(Label1.Text), options_string, "00:23:00" ,userID, DateTime.Now.ToString("yyyy-MM-dd"), items_string);
+            Session["ETA"] = "00:23:00";
+
+            Server.Transfer("TransactionComplete.aspx");
+
+        }
+
+        public SqlDataReader CompleteTransaction_Code(string items_string, string options_string, decimal totalPrice, int userID)
+        {
+            String query = String.Format("INSERT INTO [team_project475].[orders](TotalPrice, OptionsSelected, ETA, CustomerID, DateOfPurchase, ItemsSelected) VALUES({0},'{1}', '{2}', {3}, '{4}', '{5}')", totalPrice, options_string, "00:23:00", userID, DateTime.Now.ToString("yyyy-MM-dd"), items_string);
 
             DBConnection dbCon = new DBConnection();
             SqlConnection conn = dbCon.connect();
@@ -51,11 +60,9 @@ namespace WebApplication2
 
             SqlCommand command = new SqlCommand(query, conn);
 
-            command.ExecuteReader();
-            Session["ETA"] = "00:23:00";
+            SqlDataReader reader = command.ExecuteReader();
 
-            Server.Transfer("TransactionComplete.aspx");
-
+            return reader;
         }
 
         public void GoBack(object sender, EventArgs e)

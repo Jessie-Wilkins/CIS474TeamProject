@@ -10,7 +10,7 @@
 namespace WebApplication2 {
     
     
-    public partial class WebForm2 {
+    public partial class Transaction {
         
         /// <summary>
         /// form1 control.
