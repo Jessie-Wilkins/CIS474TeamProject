@@ -226,7 +226,6 @@
     <Compile Include="menu.aspx.designer.cs">
       <DependentUpon>menu.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SQLEnterLogIn.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -266,7 +265,6 @@
     <Compile Include="TransactionComplete.aspx.designer.cs">
       <DependentUpon>TransactionComplete.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UserDummy.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

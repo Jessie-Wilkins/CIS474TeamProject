@@ -1,92 +1,27 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WebApplication2;
-using System.Data.SqlClient;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting; //Library for unit testing
+using WebApplication2; //Imports web application project
+using System.Data.SqlClient; //Library used to connect and query sql database
 
 namespace UnitTestProject1
 {
-    /// <summary>
-    /// Summary description for UnitTest1
-    /// </summary>
+   /*
+    Class for testing SQL connection
+    */
     [TestClass]
     public class TestSQLConnection
     {
-        public TestSQLConnection()
-        {
-            
-        }
-
-        private TestContext testContextInstance;
-
-       
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
-        }
-
-        #region Additional test attributes
-        //
-        // You can use the following additional attributes as you write your tests:
-        //
-        // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
-        // public static void MyClassInitialize(TestContext testContext) { }
-        //
-        // Use ClassCleanup to run code after all tests in a class have run
-        // [ClassCleanup()]
-        // public static void MyClassCleanup() { }
-        //
-        // Use TestInitialize to run code before running each test 
-        // [TestInitialize()]
-        // public void MyTestInitialize() { }
-        //
-        // Use TestCleanup to run code after each test has run
-        // [TestCleanup()]
-        // public void MyTestCleanup() { }
-        //
-        #endregion
-
+     
+        /*
+         Tests whether the database can connect
+         */
         [TestMethod]
         public void TestDBConnection()
         {
             DBConnection dbTest = new DBConnection();
-
+            //If the connection object is not null, it passes.
             Assert.IsNotNull(dbTest.connect());
         }
-
-        [TestMethod]
-        public void TestSQLQueryString()
-        {
-            SQLEnterLogIn dbTest = new SQLEnterLogIn();
-
-            dbTest.EnterInfo("testName", "testPassword");
-
-            string testQuery = dbTest.GetQuery();
-
-            Assert.AreEqual(testQuery, "INSERT INTO [team_project475].[customer](username, password) VALUES('testName','testPassword')");
-
-        }
-
-        [TestMethod]
-        public void TestSQLQuery()
-        {
-            SQLEnterLogIn dbTest = new SQLEnterLogIn();
-
-            SqlDataReader reader = dbTest.EnterInfo("testName", "testPassword");
-
-            reader.Read();
-
-            Assert.AreEqual(reader.RecordsAffected, 1);
-        }
+        
 
     }
 }
