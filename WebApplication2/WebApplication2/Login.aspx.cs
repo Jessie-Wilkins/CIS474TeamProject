@@ -42,5 +42,12 @@ namespace online_burger_order
                 else { lblErrorMessage.Visible = true; }
             }
         }
+
+        protected void btngoback_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+
+            Response.Redirect("index.aspx");
+        }
     }
 }

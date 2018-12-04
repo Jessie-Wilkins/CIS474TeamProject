@@ -234,5 +234,10 @@ namespace WebApplication2
             Server.Transfer("Transaction.aspx");
         }
 
+        protected void Logout(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Server.Transfer("index.aspx");
+        }
     }
 }

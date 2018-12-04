@@ -13,7 +13,8 @@
         <div id="Div1" runat="server">
         </div>
 
-        <asp:Button ID="TransactionButton" runat="server" style="float:right" onCommand="GoToCart" Text="Go to cart" />
+        <asp:Button ID="TransactionButton" runat="server" style="float:right" onCommand="GoToCart" Text="Go to cart"/>
+        <asp:Button ID="GoBack" runat="server" style = "float:right" Text="Log Out" OnClick="Logout" />
 
         <asp:ScriptManager ID="asm" runat="server" />
 <asp:Repeater ID="Repeater1" runat="server">

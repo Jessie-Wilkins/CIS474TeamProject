@@ -12,5 +12,11 @@ namespace WebApplication2
         {
             Div2.InnerHtml = String.Format("Your order will be ready in {0}", Session["ETA"].ToString());
         }
+
+        protected void Logout(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Server.Transfer("index.aspx");
+        }
     }
 }

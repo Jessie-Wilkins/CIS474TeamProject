@@ -17,6 +17,7 @@
         <div id="Div2" runat="server">
 
         </div>
+        <asp:Button ID="GoBack" runat="server" style = "float:right" Text="Log Out" OnClick="Logout" />
     </form>
 </body>
 </html>

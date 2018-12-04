@@ -45,6 +45,11 @@
                     <asp:Label ID="lblErrorMessage" runat="server" Text="Incorrect User Credentials" ForeColor ="Red"></asp:Label>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <asp:Button ID="btnGoBack" runat="server" Text="Go Back" OnClick="btngoback_Click" Width="80px" Height="25px"/>
+                </td>
+            </tr>
         </table>
         </div>
     </form>
