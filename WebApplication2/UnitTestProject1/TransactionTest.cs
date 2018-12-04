@@ -10,6 +10,14 @@ namespace UnitTestProject1
     [TestClass]
     public class TransactionTest : Transaction
     {
+        //Used to write test results
+        private TestContext testContext;
+
+        public TestContext TestContext
+        {
+            get { return testContext; }
+            set { testContext = value; }
+        }
         /*
          Tests if the transaction was recorded by the database.
          */
@@ -27,6 +35,9 @@ namespace UnitTestProject1
             reader.Read();
             //Sees if the number of rows entered in is 1. If it is, it passes.
             Assert.AreEqual(reader.RecordsAffected, 1);
+            //Write test results
+            TestContext.WriteLine("Test for transaction function.");
         }
     }
 }
+

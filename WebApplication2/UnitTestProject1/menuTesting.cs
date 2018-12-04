@@ -4,12 +4,22 @@ using System.Web.UI.WebControls; //Used to access web controls
 
 namespace UnitTestProject1
 {
+
     /*
      Class used to test the menu page code
      */
     [TestClass]
     public class menuTesting : menu
     {
+        //Used to write test results
+        private TestContext testContext;
+
+        public TestContext TestContext
+        {
+            get { return testContext; }
+            set { testContext = value; }
+        }
+
         /*
          Tests if the string that was added to the menu was actually added to the menu
          */
@@ -30,6 +40,8 @@ namespace UnitTestProject1
 
             //Tests if the stored string item equals the string that was entered
             Assert.AreEqual(cart.getItems()[1], myString);
+            //Write test results
+            TestContext.WriteLine("Test for add item function.");
 
         }
         /*
@@ -53,6 +65,8 @@ namespace UnitTestProject1
             ShoppingCart cart = item.ViewState["cart"] as ShoppingCart;
             //Tests if the key for the item exists anymore. The test passes if it is not.
             Assert.IsFalse(cart.getItems().ContainsKey(1));
+            //Write test results
+            TestContext.WriteLine("Test for remove item function.");
 
         }
         /*
@@ -77,6 +91,8 @@ namespace UnitTestProject1
             int id = item.Customize_Item_Code(myString);
             //Tests if the option with the given id does exist. If it does, it passes.
             Assert.AreEqual(init_cart.getOptions()[id], "options");
+            //Write test results
+            TestContext.WriteLine("Test for customize item function.");
         }
         /*
          Tests if the items selected are entered into the dictionary
@@ -109,8 +125,8 @@ namespace UnitTestProject1
             init_cart = item.ViewState["cart"] as ShoppingCart;
             //Tests if the options were added. If they were, it passes.
             Assert.AreEqual(init_cart.getOptions()[1], "option1,option2,");
-
-            
+            //Write test results
+            TestContext.WriteLine("Test for checked action function when items are selected.");
         }
         /*
          Tests whether items not selected will not be stored in the dictionary
@@ -143,8 +159,8 @@ namespace UnitTestProject1
             init_cart = item.ViewState["cart"] as ShoppingCart;
             //Tests if the items are in the dictionary. If not, the test passes.
             Assert.AreNotEqual(init_cart.getOptions()[1], "option1,option2,");
-
-
+            //Write test results
+            TestContext.WriteLine("Test for transaction function when not all items are selected.");
         }
     }
     

@@ -1,0 +1,98 @@
+Group Name: UnitTestProject1
+Group By: Hierarchy
+Group Full Name: UnitTestProject1
+Duration: 0:00:01.8317828
+0 test(s) failed
+0 test(s) skipped
+10 test(s) passed
+
+Result1 Name:	Add_Item_Test
+Result1 Outcome:	Passed
+Result1 Duration:	0:00:00.0450114
+Result1 StackTrace:
+Result1 Message:
+Result1 StandardOutput:	TestContext Messages:
+Test for add item function.
+Result1 StandardError:
+
+Result2 Name:	AddToCartTest
+Result2 Outcome:	Passed
+Result2 Duration:	0:00:00.0101405
+Result2 StackTrace:
+Result2 Message:
+Result2 StandardOutput:	TestContext Messages:
+Test for add to cart function.
+Result2 StandardError:
+
+Result3 Name:	AlterOptionsTest
+Result3 Outcome:	Passed
+Result3 Duration:	0:00:00.0014716
+Result3 StackTrace:
+Result3 Message:
+Result3 StandardOutput:	TestContext Messages:
+Test for alter options function.
+Result3 StandardError:
+
+Result4 Name:	CheckedActionNotSelectedTest
+Result4 Outcome:	Passed
+Result4 Duration:	0:00:00.0036274
+Result4 StackTrace:
+Result4 Message:
+Result4 StandardOutput:	TestContext Messages:
+Test for transaction function when not all items are selected.
+Result4 StandardError:
+
+Result5 Name:	CheckedActionSelectedTest
+Result5 Outcome:	Passed
+Result5 Duration:	0:00:00.009392
+Result5 StackTrace:
+Result5 Message:
+Result5 StandardOutput:	TestContext Messages:
+Test for checked action function when items are selected.
+Result5 StandardError:
+
+Result6 Name:	CompleteTransaction_Test
+Result6 Outcome:	Passed
+Result6 Duration:	0:00:01.0338689
+Result6 StackTrace:
+Result6 Message:
+Result6 StandardOutput:	TestContext Messages:
+Test for transaction function.
+Result6 StandardError:
+
+Result7 Name:	Customize_Item_Test
+Result7 Outcome:	Passed
+Result7 Duration:	0:00:00.005238
+Result7 StackTrace:
+Result7 Message:
+Result7 StandardOutput:	TestContext Messages:
+Test for customize item function.
+Result7 StandardError:
+
+Result8 Name:	Remove_Item_Test
+Result8 Outcome:	Passed
+Result8 Duration:	0:00:00.0018352
+Result8 StackTrace:
+Result8 Message:
+Result8 StandardOutput:	TestContext Messages:
+Test for remove item function.
+Result8 StandardError:
+
+Result9 Name:	RemoveFromCartTest
+Result9 Outcome:	Passed
+Result9 Duration:	0:00:00.0028063
+Result9 StackTrace:
+Result9 Message:
+Result9 StandardOutput:	TestContext Messages:
+Test for remove from cart function.
+Result9 StandardError:
+
+Result10 Name:	TestDBConnection
+Result10 Outcome:	Passed
+Result10 Duration:	0:00:00.7183915
+Result10 StackTrace:
+Result10 Message:
+Result10 StandardOutput:	TestContext Messages:
+Test for SQL connection function.
+Result10 StandardError:
+
