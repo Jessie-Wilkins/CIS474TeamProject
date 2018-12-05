@@ -67,7 +67,7 @@ namespace online_burger_order
                         //Adds all the given data from the text fields
                         sqlCmd.Parameters.AddWithValue("@CustomerID", Convert.ToInt32(hfUserID.Value == "" ? "0" : hfUserID.Value));
                         sqlCmd.Parameters.AddWithValue("@CustomerName", txtLastName.Text.Trim() + ","+txtFirstName.Text.Trim());
-                        sqlCmd.Parameters.AddWithValue("@PhoneNumber", Convert.ToInt64(new string(txtContact.Text.Trim().Where(char.IsDigit).ToArray())));
+                        sqlCmd.Parameters.AddWithValue("@PhoneNumber", Convert.ToInt64(txtContact.Text.Trim()));
                         sqlCmd.Parameters.AddWithValue("@CreditCardNumber", Convert.ToInt64(txtCreditCard.Text.Trim()));
                         sqlCmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
                         sqlCmd.Parameters.AddWithValue("@Address", txtAddress.Text.Trim());

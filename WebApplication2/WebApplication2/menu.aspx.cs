@@ -68,6 +68,7 @@ namespace WebApplication2
             double Total_cost = double.Parse(Label2.Text);
             //Gets the number part of the string and parses it
             Total_cost = double.Parse(cost[1]) + Total_cost;
+            Label2.Text = Total_cost.ToString();
         }
         /*
          Code used to modularize part of the add_item method for testing purposes
