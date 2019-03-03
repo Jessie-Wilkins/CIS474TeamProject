@@ -31,8 +31,25 @@ namespace WebApplication2
         public bool RemoveFromCart(int id)
         {
 
+           itemId--;
            bool test_case = Items.Remove(id);
            Options.Remove(id);
+
+
+           //Used to adjust the key values of the items and options if the items and options have higher key values
+           if(Items.ContainsKey(id+1))
+            {
+                int temp_id = id + 1;
+                while (Items.ContainsKey(temp_id))
+                {
+                    Items.Add(temp_id - 1, Items[temp_id]);
+                    Items.Remove(temp_id);
+
+                    Options.Add(temp_id - 1, Options[temp_id]);
+                    Options.Remove(temp_id);
+                    temp_id++;
+                }
+            }
            
            return test_case;
         }
