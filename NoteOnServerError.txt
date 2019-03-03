@@ -1,0 +1,1 @@
+Remember to change the connection string in web.config file. Otherwise, you get an error.
