@@ -16,7 +16,7 @@ namespace WebApplication2
             string connectionString;
             SqlConnection connection;
             //Creates connection string
-            connectionString = @"Data Source = MEGAORA81; Initial Catalog = cis474TeamProject; Integrated Security = True";
+            connectionString = @"Data Source = " + SQLServerVars.getServerName() + "; Initial Catalog = cis474TeamProject; Integrated Security = True";
             //Creates connection object used to connect to the database later
             connection = new SqlConnection(connectionString);
             //Returns connection object

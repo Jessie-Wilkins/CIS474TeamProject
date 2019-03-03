@@ -16,7 +16,9 @@ namespace WebApplication2
         protected void Logout(object sender, EventArgs e)
         {
             Session.Abandon();
-            Server.Transfer("index.aspx");
+            Response.Clear();
+            //Server.Transfer("index.aspx");
+            Response.Redirect("index.aspx");
         }
     }
 }

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace online_burger_order {
+namespace WebApplication2 {
     
     
     public partial class Login {

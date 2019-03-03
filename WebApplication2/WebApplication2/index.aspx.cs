@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient; //used for communicating with the sql database
 using System.Data; //Used for system data related purposes
 
-namespace online_burger_order
+namespace WebApplication2
 {
     /*
      Class used for the sign up page. New customers will enter in their information
@@ -16,7 +16,7 @@ namespace online_burger_order
     public partial class index : System.Web.UI.Page
     {
         //Connection string used to connect to the database
-        string connectionString = @"Data Source = MEGAORA81; Initial Catalog = cis474TeamProject; Integrated Security = True;";
+        string connectionString = @"Data Source = " + SQLServerVars.getServerName() + "; Initial Catalog = cis474TeamProject; Integrated Security = True;";
         /*
          Page is cleared when reloaded
          */
@@ -97,6 +97,7 @@ namespace online_burger_order
          */
         protected void btn_go_login(object sender, EventArgs e)
         {
+            Response.Clear();
             Response.Redirect("Login.aspx");
         }
     }

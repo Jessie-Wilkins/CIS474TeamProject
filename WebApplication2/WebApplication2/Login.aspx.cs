@@ -1,7 +1,9 @@
 ﻿using System; //Use library with system related functions
 using System.Data.SqlClient; //Use library for connecting and querying database
+using System.Web;
 
-namespace online_burger_order
+
+namespace WebApplication2
 {
     /*
      Class used to login existing user
@@ -20,11 +22,12 @@ namespace online_burger_order
          */
         protected void btnLogin_Click(object sender, EventArgs e)
         {
+            
             //Use data source
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source = MEGAORA81; Initial Catalog = cis474TeamProject; Integrated Security = True;"))
+            using (SqlConnection sqlCon = new SqlConnection(@"Data Source = "+SQLServerVars.getServerName()+"; Initial Catalog = cis474TeamProject; Integrated Security = True;"))
             {
                 sqlCon.Open();
-                string query = "SELECT CustomerID FROM [team_project475].[customer] WHERE username =@UserName AND username=@Password";
+                string query = "SELECT CustomerID FROM [team_project475].[customer] WHERE username =@UserName AND password=@Password";
                 SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
                 //Adds value to query parameters
                 sqlCmd.Parameters.AddWithValue("@UserName", txtUserName.Text.Trim());
@@ -36,7 +39,10 @@ namespace online_burger_order
                 {
                     id = Convert.ToInt32(sqlObject);
                     Session["userid"] = id;
+                    Response.Clear();
                     Response.Redirect("menu.aspx");
+                   // Server.TransferRequest("menu.aspx");
+                   // HttpContext.Current.RewritePath("menu.aspx");
                 }
                 //Shows error message if user does not exist in database
                 else { lblErrorMessage.Visible = true; }
@@ -46,8 +52,10 @@ namespace online_burger_order
         protected void btngoback_Click(object sender, EventArgs e)
         {
             Session.Abandon();
-
+            Response.Clear();
             Response.Redirect("index.aspx");
+            //Server.TransferRequest("index.aspx");
+            //HttpContext.Current.RewritePath("index.aspx");
         }
     }
 }

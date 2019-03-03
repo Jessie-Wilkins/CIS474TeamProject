@@ -232,13 +232,17 @@ namespace WebApplication2
             Session["cart"] = cart;
             Session["Total"] = Label2.Text;
             //Transfers the user to the transaction page
-            Server.Transfer("Transaction.aspx");
+            // Server.Transfer("Transaction.aspx");
+            Response.Clear();
+            Response.Redirect("Transaction.aspx");
         }
 
         protected void Logout(object sender, EventArgs e)
         {
             Session.Abandon();
-            Server.Transfer("index.aspx");
+            //Server.Transfer("index.aspx");
+            Response.Clear();
+            Response.Redirect("index.aspx");
         }
     }
 }

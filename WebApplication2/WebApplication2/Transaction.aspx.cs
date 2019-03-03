@@ -50,7 +50,9 @@ namespace WebApplication2
 
             Session["ETA"] = "00:23:00";
             //Transfers user 
-            Server.Transfer("TransactionComplete.aspx");
+            Response.Clear();
+            //Server.Transfer("TransactionComplete.aspx");
+            Response.Redirect("TransactionComplete.aspx");
 
         }
         /*
@@ -76,8 +78,10 @@ namespace WebApplication2
          */
         public void GoBack(object sender, EventArgs e)
         {
-            
-            Server.Transfer("menu.aspx");
+
+            //Server.Transfer("menu.aspx");
+
+            Response.Redirect("menu.aspx");
         }
     }
 }
