@@ -55,7 +55,7 @@ namespace WebApplication2
                     {
                         // the user name already exist.
                         //Ask user to enter another user name.
-                        lbluserNameExist.Text = "This User Name already exist, please try having another User Name!!!";
+                        lbluserNameExist.Text = "This User Name already exists, please try having another User Name!!!";
                     }
                     //If the number of rows is 0, then add the information to the database
                     else
@@ -88,7 +88,7 @@ namespace WebApplication2
          */
         void Clear()
         {
-            txtFirstName.Text = txtLastName.Text = txtContact.Text = txtAddress.Text = txtUserName.Text = txtPassword.Text = txtConfirmPassword.Text = "";
+            txtCreditCard.Text = txtEmail.Text = txtFirstName.Text = txtLastName.Text = txtContact.Text = txtAddress.Text = txtUserName.Text = txtPassword.Text = txtConfirmPassword.Text = "";
             hfUserID.Value = "";
             lblSuccessMessage.Text = lblErrorMessage.Text = "";
         }

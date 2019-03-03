@@ -242,7 +242,7 @@ namespace WebApplication2
             Session.Abandon();
             //Server.Transfer("index.aspx");
             Response.Clear();
-            Response.Redirect("index.aspx");
+            Response.Redirect("Login.aspx");
         }
     }
 }

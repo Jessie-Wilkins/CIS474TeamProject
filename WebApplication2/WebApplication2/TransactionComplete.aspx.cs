@@ -18,7 +18,7 @@ namespace WebApplication2
             Session.Abandon();
             Response.Clear();
             //Server.Transfer("index.aspx");
-            Response.Redirect("index.aspx");
+            Response.Redirect("Login.aspx");
         }
     }
 }
